@@ -1,3 +1,5 @@
+var Stately = require('stately')
+
 //the testing framework
 var test = {
 

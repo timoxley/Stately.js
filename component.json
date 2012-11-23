@@ -1,0 +1,14 @@
+{
+  "name": "stately",
+  "repo": "timoxley/stately",
+  "description": "A Finite-state Machine Engine",
+  "version": "1.0.0",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "Stately.js",
+  "scripts": [
+    "Stately.js"
+  ]
+}
