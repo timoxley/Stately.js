@@ -1,4 +1,4 @@
-var Stately = require('stately')
+var State = require('state-machine')
 
 //the testing framework
 var test = {
@@ -9,7 +9,7 @@ var test = {
             name: 'Create basic finite state machine.',
             method: function () {
 
-                var simple = Stately.machine({
+                var simple = State.machine({
                     'TEST': {
                         test: function () {
                             return this.TEST;
@@ -28,7 +28,7 @@ var test = {
             name: 'Basic transitions with strings.',
             method: function () {
 
-                var door = Stately.machine({
+                var door = State.machine({
                     'OPEN': {
                         close: 'CLOSED'
                     },
@@ -49,7 +49,7 @@ var test = {
             name: 'Epsilon transitions.',
             method: function () {
 
-                var door = Stately.machine({
+                var door = State.machine({
                     'OPEN': {
                         close: function () {
                             //epsilon transition with calling other states event function;
@@ -68,7 +68,7 @@ var test = {
                 this.assert(door.getMachineState() === 'OPEN', 'Report initial state.');
                 this.assert(door.close().getMachineState() === 'OPEN', 'Transition into new state.');
 
-                door = Stately.machine({
+                door = State.machine({
                     'OPEN': {
                         close: function () {
                             //epsilon transition without calling other states event;
@@ -96,7 +96,7 @@ var test = {
                 transitionedOldstate = false,
                 transitionedNewstate = false,
 
-                door = Stately.machine({
+                door = State.machine({
                     'OPEN': {
                         close: function () {
                             return this.CLOSED;
@@ -143,7 +143,7 @@ var test = {
                 onenterCLOSED,
                 onOPEN,
 
-                door = Stately.machine({
+                door = State.machine({
                     'OPEN': {
                         close: function () {
                             return this.CLOSED;
@@ -189,7 +189,7 @@ var test = {
             name: 'Exceptions.',
             method: function () {
 
-                var door = Stately.machine({
+                var door = State.machine({
                     'OPEN': {
                         close: function () {
                             return this.CLOSED;
@@ -211,13 +211,13 @@ var test = {
                 try {
                     door.open();
                 } catch (ex) {
-                    errorReportOk = (ex instanceof Stately.InvalidStateError);
+                    errorReportOk = (ex instanceof State.InvalidStateError);
                 }
 
                 this.assert(errorReportOk, 'Report InvalidStateError.');
 
                 //ignore invalid events
-                door = Stately.machine({
+                door = State.machine({
                     'OPEN': {
                         close: function () {
                             return this.CLOSED;
@@ -239,7 +239,7 @@ var test = {
             name: 'Return values of actions.',
             method: function () {
 
-                var door = Stately.machine({
+                var door = State.machine({
                     'OPEN': {
                         close: function () {
                             return [this.CLOSED, 'the door is closed'];
