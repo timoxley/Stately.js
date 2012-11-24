@@ -142,7 +142,7 @@
                     }
 
                     //retrieve leave state hook
-                    onLeaveState = stateMachine['onleave' + currentState.name];
+                    onLeaveState = stateMachine['onleave' + lastState.name];
 
                     //if a hook is attached
                     if (onLeaveState && typeof onLeaveState === 'function') {
