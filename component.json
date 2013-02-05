@@ -1,6 +1,6 @@
 {
-  "name": "state-machine",
-  "repo": "timoxley/state-machine",
+  "name": "Stately.js",
+  "repo": "timoxley/Stately.js",
   "description": "A Finite-state Machine Engine",
   "version": "1.0.0",
   "keywords": [],
